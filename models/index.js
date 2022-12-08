@@ -14,15 +14,14 @@ Product.belongsTo(Category, {
 }); 
 
 // Describe relationship between review and product and user 
-Product.belongsToMany(User, {
-    // Define the third table needed to store the foreign keys
-    through: {
-      model: Review,
-      unique: false
-    },
-    // Define an alias for when data is retrieved
-    as: 'product_reviews'
-});
+Product.hasMany(Reivew, {
+  foreignKey: 'product_id',
+  onDelete: 'CASCADE',
+}); 
+  
+Review.belongsTo(Product, {
+  foreignKey: 'product_id',
+}); 
 
 module.exports = {
   Product,

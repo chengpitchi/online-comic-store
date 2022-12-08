@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Product, Category, Review, User } = require('../../models');
+const { Product, Category, Review } = require('../../models');
 
 // get product by id
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: Category }, { model: User, through: Review, as: 'product_reviews' }],
+      include: [{ model: Category }, { model: Review, include: [{ model: Review.User }] }],
     });
 
     if (!productData) {
