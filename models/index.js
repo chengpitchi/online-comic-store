@@ -3,8 +3,8 @@ const Product = require('./Product');
 const Category = require('./Category');
 const Review = require('./Review'); 
 
-// Description relationship between product and category
-/* Category.hasMany(Product, {
+// Describe relationship between product and category
+Category.hasMany(Product, {
   foreignKey: 'category_id',
   onDelete: 'CASCADE',
 }); 
@@ -12,7 +12,16 @@ const Review = require('./Review');
 Product.belongsTo(Category, {
   foreignKey: 'category_id',
 }); 
-*/
+
+// Describe relationship between review and product
+Product.hasMany(Review, {
+    foreignKey: 'product_id',
+    onDelete: 'CASCADE',
+}); 
+
+Review.belongsTo(Product, {
+    foreignKey: 'product_id',
+}); 
 
 module.exports = {
   Product,
