@@ -5,7 +5,8 @@ const { Product, Category, Review } = require('../../models');
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: Category }, { model: Review, include: [{ model: Review.User }] }],
+//      include: [{ model: Category }, { model: Review, include: [{ model: Review.User }] }],
+        include: [{ model: Category }, { model: Review }],
     });
 
     if (!productData) {

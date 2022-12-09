@@ -14,7 +14,7 @@ Product.belongsTo(Category, {
 }); 
 
 // Describe relationship between review and product and user 
-Product.hasMany(Reivew, {
+Product.hasMany(Review, {
   foreignKey: 'product_id',
   onDelete: 'CASCADE',
 }); 
