@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { Product, Category, Review } = require('../../models');
+const { Product, Category, Review, User } = require('../../models');
 
-// get product by id
+// get product by id, include Category, review and user (in review model)
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-//      include: [{ model: Category }, { model: Review, include: [{ model: Review.User }] }],
-        include: [{ model: Category }, { model: Review }],
+      include: [{ model: Category }, 
+                { model: Review, include: [ { model: User }] }]
     });
 
     if (!productData) {
@@ -15,6 +15,7 @@ router.get('/:id', async (req, res) => {
     }
 
     const product = productData.get({ plain: true });
+    console.log(product); 
     res.render('productItem', product);
 } catch (err) {
     res.status(500).json(err);

@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Order extends Model {}
 
-Oreder.init(
+Order.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -31,7 +31,6 @@ Oreder.init(
             model: 'user',
             key: 'id',
           },
-     
     }
   },
   {

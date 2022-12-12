@@ -1,3 +1,40 @@
+<section id="home-banner"></section>
 
+<main class="container container-fluid mt-5" id="item-container">
+    <h2>Recommendations</h2>
+    <div class="scrolling-wrapper">
+        {{#each recommendations as |recommendation|}}
+            <div class="card"><img data-id="{{recommendation.id}}" src="{{recommendation.image_url}}"/></div>
+        {{/each}}
+    </div>
+
+    <h2>US Comics</h2>
+    <div class="scrolling-wrapper">
+        {{#each usComics as |usComic|}}
+            <div class="card"><img data-id="{{usComic.id}}" src="{{usComic.image_url}}"/></div>
+        {{/each}}
+    </div>
+
+    <h2>Japanese Comics</h2>  
+    <div class="scrolling-wrapper">
+        {{#each japanComics as |japanComic|}}
+            <div class="card"><img data-id="{{japanComic.id}}" src="{{japanComic.image_url}}"/></div>
+        {{/each}}
+    </div>   
+
+    <h2>Other Comics</h2>   
+    <div class="scrolling-wrapper">
+        {{#each otherComics as |otherComic|}}
+            <div class="card"><img data-id="{{otherComic.id}}" src="{{otherComic.image_url}}"/></div>
+        {{/each}}
+    </div>
+
+    <h2>Collectibles</h2>   
+    <div class="scrolling-wrapper">
+        {{#each collectibles as |collectible|}}
+            <div class="card"><img data-id="{{collectible.id}}" src="{{collectible.image_url}}"/></div>
+        {{/each}}
+    </div>
+</main>
 
 <script src="/js/homepage.js"></script>
