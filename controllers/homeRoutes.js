@@ -1,25 +1,62 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { Product } = require('../models');
+const { Op } = require('sequelize'); 
 //const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
-/*  
-    try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
+router.get('/', async (req, res) => {  
+  try {
+    // get recommendation items
+    const recomData = await Product.findAll({ 
+      where: { highlighted_item: 1 }, 
+      order: [['release_date', 'DESC']], 
+    }); 
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const recommendations = recomData.map((item) => item.get({ plain: true })); 
+
+    // get us comic items
+    const usData = await Product.findAll({ 
+      where: { country: "US", category_id: 1 }, 
+      order: [['release_date', 'DESC']], 
+    }); 
+
+    const usComics = usData.map((item) => item.get({ plain: true })); 
+
+    // get japan comic items
+    const japanData = await Product.findAll({ 
+      where: { country: "Japan", category_id: 1 }, 
+      order: [['release_date', 'DESC']], 
+    }); 
+
+    const japanComics = japanData.map((item) => item.get({ plain: true })); 
+
+    // get other comic items
+    const otherData = await Product.findAll({ 
+      where: { country: { [Op.notIn]: ["US", "Japan"] }, category_id: 1 }, 
+      order: [['release_date', 'DESC']], 
+    }); 
+
+    const otherComics = otherData.map((item) => item.get({ plain: true })); 
+
+    // get collectible items
+    const collectData = await Product.findAll({ 
+      where: { category_id: 2 }, 
+      order: [['release_date', 'DESC']], 
+    }); 
+
+    const collectibles = collectData.map((item) => item.get({ plain: true })); 
 
     res.render('homepage', {
-      users,
+      recommendations,
+      usComics,
+      japanComics, 
+      otherComics,
+      collectibles, 
       logged_in: req.session.logged_in,
-    });
+    }); 
   } catch (err) {
     res.status(500).json(err);
   }
-*/
 });
 
 router.get('/login', (req, res) => {

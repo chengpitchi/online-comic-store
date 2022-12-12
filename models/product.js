@@ -47,6 +47,10 @@ Product.init(
         isInt: true,
       },
     },
+    author: {
+      type: DataTypes.STRING, 
+      allowNull: true,
+    },
     release_date: {
         type: DataTypes.DATEONLY, 
         allowNull: false,

@@ -15,17 +15,46 @@
         rel="stylesheet"
     />
     <link
-        href="../css/main.css"
+        href="/css/jass.css"
+        rel="stylesheet"
+    />
+    <link
+        href="/css/style.css"
         rel="stylesheet"
     />    
     <title>Welcome to Online Comic Store</title>
 </head>
 <body>
+    <header class="display-flex justify-space-between align-center p-2">
+        <h1>
+          <a href="#">Comic Store</a>
+        </h1>
+
+        <nav>
+          {{#if logged_in}}
+            <a href="#" class="nav-item" id="logout">
+                <span class="item-text">Logout</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+          {{else}}
+            <a href="/login" class="nav-item" id="login">
+                <span class="item-text">Login</span>
+                <i class="fa-solid fa-user"></i>
+            </a>
+          {{/if}}
+          <a href="#" class="nav-item" id="checkout">
+            <span class="item-text">Checkout</span>
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </nav>
+    </header>
+
     {{{body}}}
 
-    <!-- Only include the logout script if the user is logged in -->
-    {{#if logged_in}}
-        <script src="/js/logout.js"></script>
-    {{/if}}
+    <footer class="display-flex align-center p-1">
+        <p>
+            © 2022, Comic Store Ltd.
+        </p>
+    </footer>
 </body>
 </html>

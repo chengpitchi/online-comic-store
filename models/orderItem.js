@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class OrderItem extends Model {}
 
-OrederItem.init(
+OrderItem.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,13 +28,12 @@ OrederItem.init(
         key: 'id',
       },
       },
-    
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
        },
     total_price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
      }
   },
@@ -43,8 +42,8 @@ OrederItem.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'order',
+    modelName: 'order_item',
   }
 );
 
-module.exports = Order;
+module.exports = OrderItem;
