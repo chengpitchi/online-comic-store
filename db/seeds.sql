@@ -5,7 +5,7 @@ INSERT INTO category (category_name)
             ('Collectibles'); 
 
 INSERT INTO product (product_name, description, country, image_url, price, stock, author, release_date, highlighted_item, category_id)
-    VALUES ('Mix (Vol. 19)', 'A Japanese Comic about Baseball Match!', 'Japan', '/images/mix.webp', 12.99, 5, 'Adachi Mitsuru', '2022-09-07', 1, 1),
+    VALUES ('Mix (Vol. 19)', 'A Japanese Comic about Baseball Match!', 'Japan', '/images/mix.webp', 12.99, 0, 'Adachi Mitsuru', '2022-09-07', 1, 1),
             ('The Ravages of Time (Vol.73)', 'A Hong Kong Comic about Wars in Ancient China', 'Hong Kong', '/images/revages_of_time.webp', 18.99, 10, 'Chan Mou', '2022-07-26', 0, 1),
             ('Angel Heart 1st Season (Vol.20)', 'Not Available', 'Japan', '/images/angel_heart 2.webp', 43.5, 15, 'Hojo Tsukasa', '2022-11-09', 0, 1),
             ('Dragon Ball Super (Vol.19)', 'A Japanese Comic about Chinese Martial Art', 'Japan', '/images/dragon_ball.webp', 19.4, 20, 'Toriyama Akira ', '2022-10-14', 1, 1),
