@@ -46,13 +46,22 @@ router.get('/', async (req, res) => {
 
     const collectibles = collectData.map((item) => item.get({ plain: true })); 
 
+    // get search list
+    const searchData = await Product.findAll({ 
+      order: [['product_name', 'ASC']], 
+    }); 
+
+    const searchList = searchData.map((item) => item.get({ plain: true })); 
+    
     res.render('homepage', {
       recommendations,
       usComics,
       japanComics, 
       otherComics,
       collectibles, 
+      searchList, 
       logged_in: req.session.logged_in,
+      user_id: req.session.user_id
     }); 
   } catch (err) {
     res.status(500).json(err);
