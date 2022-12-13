@@ -22,8 +22,8 @@ const addReview = async(event) => {
     
         if (response.ok) {
           // If successful, refresh the product item
-          document.location.replace(`/api/products/${productId}`);
-          window.scrollTo(0, 1000); 
+          //document.location.replace(`/api/products/${productId}`);
+          document.querySelector("#review-title").scrollIntoView(true); 
         } else {
           alert(response.statusText);
         }
