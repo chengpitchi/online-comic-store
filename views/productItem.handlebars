@@ -8,8 +8,12 @@
             <p>Release Date: {{product.release_date}}</p>
             <h5>Product Description: </h5>
             <p id="desc-box">{{product.description}}</p>
-            <h6>Price: AUD{{product.price}}</h6>
-            <button class="btn" data-productid="{{product.id}}" id="add-btn">Add To Cart<i class="fas fa-shopping-cart"></i></button>
+            {{#if product.stock}}
+                <h6>Price: AUD{{product.price}}</h6>
+                <button class="btn" data-productid="{{product.id}}" id="add-btn">Add To Cart<i class="fas fa-shopping-cart"></i></button>
+            {{else}}
+                <h6>Out of Stock</h6>
+            {{/if}}
         </div> 
     </div>
 
@@ -19,7 +23,7 @@
             {{#each product.reviews as |review|}}
                 <div id="review-item">
                     <p>{{review_text}}</p>
-                    <p>- Written by {{user.name}} on {{format_date createdAt}}</p>
+                    <p>- written by {{user.name}} on {{format_datetime createdAt}}</p>
                 </div>
             {{/each}}
         {{else}}
@@ -29,7 +33,7 @@
 
     <div class="mb-3" id="add-review-box">
         <textarea class="form-control" id="review-text" rows="3" placeholder="Write your review..."></textarea>
-        <button class="btn" data-productid="{{product.id}}" id="add-review-btn">Add Review<i class="fas fa-edit"></i></button>
+        <button class="btn" data-productid="{{product.id}}" data-userid="{{user_id}}" id="add-review-btn">Add Review<i class="fas fa-edit"></i></button>
     </div>
 </main>
 
