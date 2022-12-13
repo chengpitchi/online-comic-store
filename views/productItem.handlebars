@@ -1,12 +1,36 @@
+<main class="container container-fluid mt-5">
+    <div id="product-detail">
+        <div class="card" id="detail-card"><img data-id="{{product.id}}" src="{{product.image_url}}"/></div>
+        <div id="detail-content">
+            <h2 id="detail-title">{{product.product_name}}</h2>
+            <p>Category:    {{product.category.category_name}}</p>
+            <p>Country of Origin:   {{product.country}}</p>
+            <p>Release Date: {{product.release_date}}</p>
+            <h5>Product Description: </h5>
+            <p id="desc-box">{{product.description}}</p>
+            <h6>Price: AUD{{product.price}}</h6>
+            <button class="btn" data-productid="{{product.id}}" id="add-btn">Add To Cart<i class="fas fa-shopping-cart"></i></button>
+        </div> 
+    </div>
 
-    {{product_name}}
-    {{description}}
-    {{category.category_name}}
-    {{price}}
-    {{country}}
-    {{release_date}}
-    {{reviews.[0].review_text}}
-    {{reviews.[0].user.name}}
-    {{reviews.[0].createdAt}}
+    <h3 id="review-title">Reviews</h3>
+    <div class="container" id="review-content">
+        {{#if product.reviewCount}}
+            {{#each product.reviews as |review|}}
+                <div id="review-item">
+                    <p>{{review_text}}</p>
+                    <p>- Written by {{user.name}} on {{format_date createdAt}}</p>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No reivew for this product.</p>
+        {{/if}}
+    </div>
+
+    <div class="mb-3" id="add-review-box">
+        <textarea class="form-control" id="review-text" rows="3" placeholder="Write your review..."></textarea>
+        <button class="btn" data-productid="{{product.id}}" id="add-review-btn">Add Review<i class="fas fa-edit"></i></button>
+    </div>
+</main>
 
 <script src="/js/productItem.js"></script>
