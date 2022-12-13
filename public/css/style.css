@@ -71,6 +71,10 @@ h2 {
     margin-top: 1%; 
 }
 
+.logo {
+    height: 3em;
+}
+
 .scrolling-wrapper {
     display: flex;
     flex-wrap: nowrap;
