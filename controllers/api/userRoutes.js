@@ -1,13 +1,26 @@
 const router = require('express').Router();
-const {User} = require('../../models');
+const { User, Order } = require('../../models');
+const uuID = require('../../utils/uuid'); 
+const { QueryTypes } = require('sequelize');
+const sequelize = require('../../config/connection'); 
 
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
-    
+
+        //create a new pending order record for the new user
+        const newOrder = JSON.stringify({ order_ref: uuID(), 
+                                          status: 'P', 
+                                          user_id: userData.id}); 
+        console.log(newOrder); 
+        const orderData = await Order.create(newOrder); 
+
         req.session.save(() => {
           req.session.user_id = userData.id;
+          req.session.user_name = userData.name; 
           req.session.logged_in = true;
+          req.session.order_id = orderData.id; 
+          req.session.order_count = 0; 
     
           res.status(200).json(userData);
         });
@@ -35,10 +48,43 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect password, please try again' });
         return;
       }
-  
+      
+      // get pending order inforamtion for this user, 
+      // if no pending order, create one for this user
+      const orderData = await Order.findOne( { where: { user_id : userData.id } }); 
+
+      if (!orderData) {
+        const newOrder =  JSON.stringify({ order_ref: uuID(), 
+          status: 'P', 
+          user_id: userData.id});
+
+        console.log(newOrder);
+        orderData = await Order.create(newOrder); 
+/*        orderData = await fetch('/api/orders', {
+          method: 'POST',
+          body: newOrder,
+          headers: { 'Content-Type': 'application/json' }, 
+        }); */
+      }
+      
+      const order = orderData.get({ plain: true });
+      console.log(order); 
+
+      // get order count for that order 
+      const result = await sequelize.query(
+                        'SELECT count(*) as item_count FROM order_item WHERE order_id = ?',
+                        {
+                          replacements: [order.id],
+                          type: QueryTypes.SELECT
+                        }
+                      );
+      
       req.session.save(() => {
         req.session.user_id = userData.id;
+        req.session.user_name = userData.name; 
         req.session.logged_in = true;
+        req.session.order_id = order.id; 
+        req.session.order_count = result[0].item_count; 
         
         res.json({ user: userData, message: 'You are now logged in!' });
       });

@@ -9,6 +9,7 @@ const openItemPage = (event) => {
     }
 }
 
+// use the product name to search the ID and open the product item page 
 const openItemPagebyName = (event) => {
     event.preventDefault(); 
 
@@ -17,13 +18,12 @@ const openItemPagebyName = (event) => {
     let productID = "";
     
     for (let i=0; i < elements.length; i++) {
-        console.log(elements[i].value); 
         if (elements[i].value.trim() == productName) {
             productID = elements[i].id; 
             break; 
         }
     }
-    console.log(productID); 
+
     if (productID !== "") {
         window.location.href = `/api/products/${productID}`;
     }

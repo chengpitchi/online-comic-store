@@ -37,11 +37,24 @@ a:hover {
 }
 
 nav{
-    width: 200px; 
+    width: 230px; 
 }
 
 .nav-item{
     padding-left: 5%;
+}
+
+#order-count{
+    position:relative; 
+    top: -8px; 
+    left: -3px; 
+    font-size: 80%;
+    font-weight: bolder;
+    background-color: var(--theme-color-3);
+    color: var(--theme-color-1); 
+    padding: 1.5% 3%; 
+    border-radius: 50%;
+    margin: 0%;
 }
 
 i{
@@ -209,6 +222,11 @@ footer p {
 
     .item-text{
         display: none; 
+    }
+
+    #order-count{
+        font-size: 70%;
+        padding: 1.2% 5%; 
     }
 
     nav{

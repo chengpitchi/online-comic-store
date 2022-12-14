@@ -61,7 +61,10 @@ router.get('/', async (req, res) => {
       collectibles, 
       searchList, 
       logged_in: req.session.logged_in,
-      user_id: req.session.user_id
+      user_id: req.session.user_id, 
+      user_name: req.session.user_name,
+      order_id: req.session.order_id, 
+      order_count: req.session.order_count
     }); 
   } catch (err) {
     res.status(500).json(err);

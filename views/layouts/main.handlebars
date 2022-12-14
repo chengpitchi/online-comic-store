@@ -21,7 +21,7 @@
 
         <nav>
             {{#if logged_in}}
-            <a href="#" class="nav-item" data-userid="{{user_id}}" id="logout">
+            <a href="#" class="nav-item" data-userid="{{user_id}}" data-user="{{user_name}}" id="logout">
                 <span class="item-text">Logout</span>
                 <i class="fas fa-sign-out-alt"></i>
             </a>
@@ -31,9 +31,14 @@
                 <i class="fa-solid fa-user"></i>
             </a>
             {{/if}}
-            <a href="#" class="nav-item" id="checkout">
+            <a href="/api/orders/{{order_id}}" class="nav-item" id="checkout">
                 <span class="item-text">Checkout</span>
                 <i class="fas fa-shopping-cart"></i>
+                {{#if logged_in}}
+                    <span data-orderid="{{order_id}}" id="order-count">{{order_count}}</span> 
+                {{else}}
+                    <span data-orderid="{{order_id}}" id="order-count">0</span>
+                {{/if}}
             </a>
         </nav>
     </header>
