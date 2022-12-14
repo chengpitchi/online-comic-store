@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
     }
 
     const product = productData.get({ plain: true });
-
+     
     res.render('productItem', {
       product, 
       logged_in: req.session.logged_in,
