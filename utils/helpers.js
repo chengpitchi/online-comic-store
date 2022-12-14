@@ -3,4 +3,10 @@ module.exports = {
     format_datetime: (date) => {
       return `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(date).getDate()} ${date.toLocaleTimeString()}`;
     },
+    net_amount: (price) => {
+      return price - price * 0.1
+    },
+    gst_amount: (price) => {
+      return price * 0.1
+    }
   };

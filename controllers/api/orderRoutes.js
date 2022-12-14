@@ -16,6 +16,12 @@ router.get('/:id', async (req, res) => {
             ),
             'orderCount',
           ],
+          [
+            sequelize.literal(
+              '(SELECT SUM(order_item.total_price) FROM order_item WHERE order_item.order_id = order.id)'
+            ),
+            'totalAmount',
+          ],
         ],
       },         
     });
