@@ -29,7 +29,7 @@ INSERT INTO user (name, email, password)
 INSERT INTO review (review_text, product_id, user_id, created_at, updated_at) 
     VALUES ('a very good comic!', 1, 1, now(), now()); 
 
-INSERT INTO comic_db.order (order_ref, status, address, user_id, created_at, updated_at)
+INSERT INTO comic_db.orders (order_ref, status, address, user_id, created_at, updated_at)
     VALUES ('000001', 'P', 'TEST ADDRESS', 1, now(), now()); 
 
 INSERT INTO order_item (order_id, product_id, quantity, total_price, created_at, updated_at)
