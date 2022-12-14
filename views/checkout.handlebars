@@ -1,3 +1,49 @@
+<main class="container container-fluid mt-5">
+    <div id="summary">
+      
+        <div id="order-summary">
+            <h2 id="summary-title">Summary</h2>
+            <p>Order ID:    {{order.id}}</p>
+            <p>Order Reference:    {{order.order_ref}}</p>
+            <p>Order Status:   {{order.status}}</p>
+            <p>Delivery Address:    {{order.address}}</p>
+            <p>Customer ID:    {{order.user_id}}</p>
+            <p>Order Date:    {{format_datetime order.createdAt}}</p>
+            <p>Total number of items:   {{order.orderCount}}</p>
+            <p>Total Amount: $  {{order.totalAmount}}</p>
+            <p>Customer email:  {{order.user.email}}</p>
+            <h3><a href="mailto:{{order.user.email}}">{{order.user.email}}</a></h3>
+        </div> 
+    </div>
 
+    <h3 id="order-details">Order Details</h3>
+    <div class="container" id="order">
+        {{#if order.orderCount}}
+            {{#each order.order_items as |order-item|}}
+                <div id="order-items">
+                    <p>Comic Name:     {{product.product_name}}</p>
+                    <p>Description:     {{product.description}}</p>
+                    <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                          <i class="fas fa-plus"></i>
+                    </button>
+                    <p>Quantity:   {{order.order_items}}</p>
+                    <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                          <i class="fas fa-minus"></i>
+                    </button>
+                    
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No items in the cart.</p>
+        {{/if}}
+    </div>
+
+    <div class="mb-3" id="add-review-box">
+        <textarea class="form-control" id="review-text" rows="3" placeholder="Write your review..."></textarea>
+        <button class="btn" data-productid="{{product.id}}" data-userid="{{user_id}}" id="add-review-btn">Add Review<i class="fas fa-edit"></i></button>
+    </div>
+</main>
 
 <script src="/js/checkout.js"></script>
