@@ -196,6 +196,11 @@ footer p {
     margin: 3% 0%; 
 }
 
+#quantity-box {
+    width:40px;
+    height:42px;
+}
+
 @media screen and (max-width: 985px) {  
     #detail-card {
         width: 32%; 

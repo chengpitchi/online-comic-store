@@ -1,49 +1,99 @@
-<main class="container container-fluid mt-5">
-    <div id="summary">
-      
-        <div id="order-summary">
-            <h2 id="summary-title">Summary</h2>
-            <p>Order ID:    {{order.id}}</p>
-            <p>Order Reference:    {{order.order_ref}}</p>
-            <p>Order Status:   {{order.status}}</p>
-            <p>Delivery Address:    {{order.address}}</p>
-            <p>Customer ID:    {{order.user_id}}</p>
-            <p>Order Date:    {{format_datetime order.createdAt}}</p>
-            <p>Total number of items:   {{order.orderCount}}</p>
-            <p>Total Amount: $  {{order.totalAmount}}</p>
-            <p>Customer email:  {{order.user.email}}</p>
-            <h3><a href="mailto:{{order.user.email}}">{{order.user.email}}</a></h3>
-        </div> 
-    </div>
 
-    <h3 id="order-details">Order Details</h3>
-    <div class="container" id="order">
-        {{#if order.orderCount}}
+<main class="container container-fluid">
+    <div class = "row">
+        <div class="col-lg-6">
+
+            <div class="row mb-4 d-flex justify-content-between align-items-center">
+              <h1>Shopping Cart</h1>
+              <h6 class=>{{order.orderCount}} items</h6>
+            </div>
+            <hr class="my-4">
+
+            {{#if order.orderCount}}
             {{#each order.order_items as |order-item|}}
-                <div id="order-items">
-                    <p>Comic Name:     {{product.product_name}}</p>
-                    <p>Description:     {{product.description}}</p>
-                    <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                    </button>
-                    <p>Quantity:   {{quantity}}</p>
-                    <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                    </button>
-                    
+            <div class="row mb-6 d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2" id="order-card">
+                    <img data-id="{{product.id}}" class="img-fluid img-thumbnail" src="{{product.image_url}}"/>                      
                 </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="font-weight-bold">Comic Name:  {{product.product_name}}</h6>
+                    <h6>Description:   {{product.description}}</h6>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <button class="btn btn-link px-2"
+                    onclick=this.parentNode.querySelector('input[type=number]').stepDown()>
+                    <i class="fas fa-minus"></i>
+                    </button>
+                    <input id="quantity-box" min="0" name="quantity" value={{quantity}} type="number"
+                    class="form-control form-control-sm" />
+                    <button class="btn btn-link px-2"
+                     onclick=this.parentNode.querySelector('input[type=number]').stepUp()>
+                     <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h6 class="mb-0">$ {{round total_price}}</h6>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+  
+            <hr class="my-4">
             {{/each}}
-        {{else}}
-            <p>No items in the cart.</p>
-        {{/if}}
-    </div>
+            {{else}}
+            <p>There are no items in the cart</p>
+            {{/if}}
+  
+            <div class="pt-5">
+                <h6 class="mb-0"><a href="/" class="text-body"><i
+                class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+            </div>
+        </div>
+    
+        <div class="col-lg-6">
+            <div class="col-lg-6 bg-grey">
+                
+                   <h2>Summary</h2>
+                   <hr class="my-4">
 
-    <div class="mb-3" id="add-review-box">
-        <textarea class="form-control" id="review-text" rows="3" placeholder="Write your review..."></textarea>
-        <button class="btn" data-productid="{{product.id}}" data-userid="{{user_id}}" id="add-review-btn">Add Review<i class="fas fa-edit"></i></button>
-    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5>Order Reference:</h5>
+                      <h5>{{order.order_ref}}</h5>
+                    </div>
+
+                    <hr class="my-4">
+ 
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5>Customer Email:</h5>
+                      <h5>{{order.user.email}}</h5>
+                    </div>
+    
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5>Items:</h5>
+                      <h5> $ {{net_amount order.totalAmount}}</h5>
+                    </div>
+    
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5>GST</h5>
+                      <h5> $ {{gst_amount order.totalAmount}}</h5>
+                    </div>
+    
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="font-weight-bold">TOTAL PRICE</h5>
+                      <h5>$ {{order.totalAmount}}</h5>
+                    </div>
+  
+                    <button type="button" class="btn"> Confirm</button>
+            </div>
+        </div>
+    </div>    
 </main>
-
+ 
 <script src="/js/checkout.js"></script>
