@@ -6,14 +6,15 @@ const sequelize = require('../../config/connection');
 
 router.post('/', async (req, res) => {
     try {
-        const userData = await User.create(req.body);
+        console.log("user"); 
+        console.log(req.body); 
+        const userData = await User.create(req.body.user);
 
-        //create a new pending order record for the new user
-        const newOrder = JSON.stringify({ order_ref: uuID(), 
-                                          status: 'P', 
-                                          user_id: userData.id}); 
-        console.log(newOrder); 
-        const orderData = await Order.create(newOrder); 
+        // add a pending order for the new user
+        req.body.order.order_ref = uuID(); 
+        req.body.order.user_id = userData.id; 
+
+        const orderData = await Order.create(req.body.order); 
 
         req.session.save(() => {
           req.session.user_id = userData.id;
@@ -31,7 +32,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-      const userData = await User.findOne({ where: { email: req.body.email } });
+      const userData = await User.findOne({ where: { email: req.body.user.email } });
   
       if (!userData) {
         res
@@ -40,7 +41,7 @@ router.post('/login', async (req, res) => {
         return;
       }
   
-      const validPassword = await userData.checkPassword(req.body.password);
+      const validPassword = await userData.checkPassword(req.body.user.password);
   
       if (!validPassword) {
         res
@@ -54,21 +55,13 @@ router.post('/login', async (req, res) => {
       const orderData = await Order.findOne( { where: { user_id : userData.id } }); 
 
       if (!orderData) {
-        const newOrder =  JSON.stringify({ order_ref: uuID(), 
-          status: 'P', 
-          user_id: userData.id});
+        req.body.order.order_ref = uuID(); 
+        req.body.order.user_id = userData.id; 
 
-        console.log(newOrder);
-        orderData = await Order.create(newOrder); 
-/*        orderData = await fetch('/api/orders', {
-          method: 'POST',
-          body: newOrder,
-          headers: { 'Content-Type': 'application/json' }, 
-        }); */
-      }
+        orderData = await Order.create(req.body.order); 
+      } 
       
       const order = orderData.get({ plain: true });
-      console.log(order); 
 
       // get order count for that order 
       const result = await sequelize.query(
@@ -90,7 +83,8 @@ router.post('/login', async (req, res) => {
       });
   
     } catch (err) {
-      res.status(400).json(err);
+      console.log('login error', err); 
+      res.status(500).json(err);
     }
   });
   
