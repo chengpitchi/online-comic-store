@@ -46,36 +46,12 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// get the order item count and save to the session
+// add the order item count and save to the session
 router.get('/orderCount/:id', async (req, res) => {
   try {
-    const orderData = await Order.findByPk(req.params.id, {
-      attributes: {
-        include: [
-          [
-            sequelize.literal(
-              '(SELECT COUNT(*) FROM order_item WHERE order_item.order_id = order.id)'
-            ),
-            'orderCount',
-          ],
-        ],
-      },         
-    });
+    req.session.order_count++; 
 
-    if (!orderData) {
-      res.status(404).json({ message: 'No order found with that id!' });
-      return;
-    }
-
-    const order = orderData.get({ plain: true });
-    console.log(order.orderCount); 
-    // save the count to the session
-    req.session.save(() => {
-      req.session.order_count = order.orderCount; 
-    });
-
-    console.log(req.session.order_count); 
-    res.status(200).json(order); 
+    res.status(200).json(req.session.order_count); 
   } catch (err) {
     res.status(500).json(err);
   }
