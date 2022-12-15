@@ -4,7 +4,7 @@
   "description": "",
   "engines": {
     "node": "16.17.1"
-    }, 
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/chengpitchi/online-comic-store#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "connect-session-sequelize": "^7.0.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
