@@ -12,7 +12,7 @@
                 <h6 data-price="{{product.price}}" id="price">Price: AUD{{product.price}}</h6>
                 <button class="btn" data-productid="{{product.id}}" id="add-btn">Add To Cart<i class="fas fa-shopping-cart"></i></button>
             {{else}}
-                <h6>Out of Stock</h6>
+                <h6 id="add-btn">Out of Stock</h6>
             {{/if}}
         </div> 
     </div>
