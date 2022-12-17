@@ -1,3 +1,4 @@
+/*
 "use strict";
 const nodemailer = require("nodemailer");
 
@@ -12,7 +13,7 @@ async function main() {
     service: 'gmail', // true for 465, false for other ports
     auth: {
       user: "nelectrik@gmail.com", // generated ethereal user
-      pass: "SAdelaide2022!", // generated ethereal password
+      pass: "", // generated ethereal password
     },
   });
 
@@ -42,3 +43,4 @@ async function main() {
 
 
 main().catch(console.error);
+*/

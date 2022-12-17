@@ -47,6 +47,9 @@ try {
     return;
     }
 
+    // update the order item count saved in the session 
+    req.session.order_count--; 
+
     res.status(200).json(orderItemData);
 } catch (err) {
     res.status(500).json(err);

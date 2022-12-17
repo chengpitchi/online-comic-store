@@ -32,7 +32,6 @@ router.get('/:id', async (req, res) => {
     }
 
     const order = orderData.get({ plain: true });
-    console.log(order);
     res.render('checkout', {
       order, 
       logged_in: req.session.logged_in,

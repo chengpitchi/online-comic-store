@@ -4,11 +4,11 @@ module.exports = {
       return `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(date).getDate()} ${date.toLocaleTimeString()}`;
     },
     net_amount: (price) => {
-      price = price - price * 0.1
+      price = price - (Math.round(price * 0.1 * 100) / 100).toFixed(2); 
       return (Math.round(price * 100) / 100).toFixed(2);
     },
     gst_amount: (price) => {
-      price = price * 0.1
+      price = price * 0.1; 
       return (Math.round(price * 100) / 100).toFixed(2);
     },
     round: (price) => {

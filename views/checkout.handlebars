@@ -1,8 +1,7 @@
 
 <main class="container container-fluid">
     <div class = "row">
-        <div class="col-lg-6">
-
+        <div id="item-list" class="col-lg-6">
             <div class="row mb-4 d-flex justify-content-between align-items-center">
               <h1>Shopping Cart</h1>
               <h6 class=>{{order.orderCount}} items</h6>
@@ -35,7 +34,7 @@
                     <h6 class="mb-0">$ {{round total_price}}</h6>
                 </div>
                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                    <a href="" class="text-muted"><i id="delete-button" data-id={{id}} class="fas fa-times"></i></a>
                 </div>
             </div>
   
@@ -59,38 +58,38 @@
 
                     <div class="d-flex justify-content-between mb-4">
                       <h5>Order Reference:</h5>
-                      <h5>{{order.order_ref}}</h5>
+                      <h5 id="order-ref">{{order.order_ref}}</h5>
                     </div>
 
                     <hr class="my-4">
  
                     <div class="d-flex justify-content-between mb-4">
                       <h5>Customer Email:</h5>
-                      <h5>{{order.user.email}}</h5>
+                      <h5 id="email-address">{{order.user.email}}</h5>
                     </div>
     
                     <hr class="my-4">
   
                     <div class="d-flex justify-content-between mb-4">
                       <h5>Items:</h5>
-                      <h5> $ {{net_amount order.totalAmount}}</h5>
+                      <h5 id="before-gst"> AUD {{net_amount order.totalAmount}}</h5>
                     </div>
     
                     <hr class="my-4">
 
                     <div class="d-flex justify-content-between mb-4">
                       <h5>GST</h5>
-                      <h5> $ {{gst_amount order.totalAmount}}</h5>
+                      <h5 id="gst"> AUD {{gst_amount order.totalAmount}}</h5>
                     </div>
     
                     <hr class="my-4">
   
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="font-weight-bold">TOTAL PRICE</h5>
-                      <h5>$ {{order.totalAmount}}</h5>
+                      <h5 id="total">AUD {{round order.totalAmount}}</h5>
                     </div>
   
-                    <button type="button" class="btn"> Confirm</button>
+                    <button type="button" class="btn" id="confirm" > Confirm</button>
             </div>
         </div>
     </div>    
