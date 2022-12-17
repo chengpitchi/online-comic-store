@@ -46,9 +46,7 @@ const deleteItem = async(event) => {
   event.preventDefault(); 
   const itemClicked = event.target; 
 
-  console.log(itemClicked); 
-  console.log(itemClicked.dataset.id, itemClicked.id); 
-  if (itemClicked.id = "delete-button") {
+  if (itemClicked.id == "delete-button") {
     const response = await fetch(`/api/orderItems/${itemClicked.dataset.id}`, {
       method: 'DELETE'
     })
