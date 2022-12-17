@@ -3,12 +3,14 @@
 
 ## Table of Contents
 * [Description](#description)
-* [User-Story](#user-story)
-* [Acceptance-Criteria](#acceptance-criteria)
+* [User Story](#user-story)
+* [Acceptance Criteria](#acceptance-criteria)
+* [Database Schema](#database-schema)
 * [Screenshot](#screenshot)
 * [Demo](#demo)
-* [Installation](#require)
+* [Installation](#installation)
 * [Features](#features)
+* [Live URL](#live-url)
 * [Contributors](#contributors)
 * [Testing](#testing)
 * [Questions](#questions)
@@ -47,6 +49,10 @@ THEN I am presented with the checkout page listing the comic items we added to t
 WHEN I click the “CONFIRM ORDER” button on checkout page<br />
 THEN a confirmation email with the order details is sent to my mailbox. 
 
+## Database Schema
+![DatabaseSchema](./public/images/model.png)
+
+
 ## Screenshot
 ![ScreenShot](./public/images/ReadmeScreenshot%202022-12-14%20151240.png)
 
@@ -54,15 +60,23 @@ THEN a confirmation email with the order details is sent to my mailbox.
 * View the [Demo]()
 
 ## Installation
-* bcrypt
-* connect-session-sequelize
-* dotenv
-* express
-* express-handlebars
-* express-session
-* mysql2
-* nodemailer
-* sequelize
+
+1. To setup the application in local, run "npm i" to install the below packages. 
+    * bcryptjs
+    * connect-session-sequelize
+    * dotenv
+    * express
+    * express-handlebars
+    * express-session
+    * mysql2
+    * nodemailer
+    * sequelize
+
+2. Under the repository folder, open the terminal and login mySQL CLI.  Execute script by issuing command "source db/schema.sql" to create the database. 
+
+3. Quit the mySQL CLI, run "npm start" to load the model to the database. 
+
+4. run the script "source db/seeds.sql" in mySQL CLI to load the sample data to the database. 
 
 ## Features
 * Uses Node.js and Express.js to create a RESTful API.
@@ -79,13 +93,18 @@ THEN a confirmation email with the order details is sent to my mailbox.
 * Is interactive (in other words, accepts and responds to user input).
 * Meets good-quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments).
 
+## Live URL 
+https://comic-world-125.herokuapp.com/
+
 ## Contributors
 * GitHub: [chengpitchi](https://github.com/chengpitchi)
 * GitHub: [NebsterOne](https://github.com/NebsterOne)
 * GitHub: [CheBar1](https://github.com/CheBar1)
 
 ## Testing
-APIs were tested using Insomnia: https://insomnia.rest/ 
+> APIs were tested using Insomnia: https://insomnia.rest/ 
+
+> Application is tested by manual test scripts through the Chrome browser.  
 
 ## Questions
 Please send your questions [here](mailto:findme@gmail.com?subject=[GitHub]%20Dev%20Connect) or visit [github/chengpitchi](https://github.com/chengpitchi).

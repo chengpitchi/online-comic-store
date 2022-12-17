@@ -31,7 +31,12 @@
                 <i class="fa-solid fa-user"></i>
             </a>
             {{/if}}
-            <a href="/api/orders/{{order_id}}" class="nav-item" id="checkout">
+            
+            {{#if logged_in}}
+                <a href="/api/orders/{{order_id}}" class="nav-item" id="checkout">
+            {{else}}
+                <a href="/" class="nav-item" id="checkout">
+            {{/if}}
                 <span class="item-text">Checkout</span>
                 <i class="fas fa-shopping-cart"></i>
                 {{#if logged_in}}

@@ -53,6 +53,7 @@ router.get('/', async (req, res) => {
 
     const searchList = searchData.map((item) => item.get({ plain: true })); 
     
+    // render home page
     res.render('homepage', {
       recommendations,
       usComics,
