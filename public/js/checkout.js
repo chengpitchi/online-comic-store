@@ -37,8 +37,7 @@ Comic World Ltd`
   if (response.ok) {
     // redirect to home page 
     // need further development
-    alert('Order confirm and email sent successfully.')
-    document.location.replace('/'); 
+    document.location.replace('/confirm'); 
   }
 }
 
