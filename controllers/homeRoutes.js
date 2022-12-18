@@ -81,4 +81,9 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/confirm', (req, res) => {
+
+  res.render('confirm');
+});
+
 module.exports = router;
