@@ -7,7 +7,6 @@
 * [Acceptance Criteria](#acceptance-criteria)
 * [Database Schema](#database-schema)
 * [Screenshot](#screenshot)
-* [Demo](#demo)
 * [Installation](#installation)
 * [Features](#features)
 * [Live URL](#live-url)
@@ -56,8 +55,6 @@ THEN a confirmation email with the order details is sent to my mailbox.
 ## Screenshot
 ![ScreenShot](./public/images/ReadmeScreenshot%202022-12-14%20151240.png)
 
-## Demo
-* View the [Demo]()
 
 ## Installation
 
